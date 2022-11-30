@@ -15,7 +15,6 @@
 ;             | /A9 GND
 
         .include "acia.inc"
-        .include "utils.inc"
 
         .import __VIA_START__
         .import __RAM_START__
