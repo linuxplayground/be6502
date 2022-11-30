@@ -1,9 +1,3 @@
-; XMODEM/CRC Receiver for the 65C02
-;
-; By Daryl Rictor & Ross Archer  Aug 2002
-;
-; 21st century code for 20th century CPUs (tm?)
-
         .include "zeropage.inc"
         .include "acia.inc"
         .export _xmodem
@@ -21,7 +15,8 @@ ESC     =    $1b        ; ESC to exit
 Rbuff:          .res $0300
 
         .code
-_xmodem:       
+_xmodem:
+XModem:       
         jsr    PrintMsg    ; send prompt and info
         lda    #$01
         sta    blkno        ; set block # to 1
