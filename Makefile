@@ -58,7 +58,8 @@ LOAD_SOURCE_FILES=01_first_loadable.s \
 			03_kbd.s \
 			04_tty_box.s \
 			05_sound.s \
-			06_vgm_player.s
+			06_vgm_player.s \
+			07_ay_kbd.s
 LOAD_OBJECTS=$(LOAD_SOURCE_FILES:%.s=$(LOAD_BUILD)/%.o)
 LOAD_RAW=$(LOAD_SOURCE_FILES:%.s=$(LOAD_BUILD)/%.raw)
 LOAD_BINARIES=$(LOAD_SOURCE_FILES:%.s=$(LOAD_BUILD)/%.bin)

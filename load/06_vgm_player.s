@@ -38,6 +38,7 @@ VIA_DDRA  = __VIA_START__ + VIA_REGISTER_DDRA
 RESET = %00000100
 LATCH = %00000111
 WRITE = %00000110
+READ  = %00000101
 
 
         .code
@@ -264,3 +265,4 @@ vgm_file:
         .incbin "../audio/01_moonpatrol"
         ; .incbin "../audio/01_bombjack_trimmed"
         ; .incbin "../audio/01_bubble"
+        ; .incbin "../audio/02_bubble_main"

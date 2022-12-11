@@ -59,6 +59,7 @@
 ;      5.7     VAL() may cause string variables to be trashed
 ;      5.8j    Fix LAB_1B5B if we hit page edge
 ;      5.9j    Add EXIT command to return to bootloader/ROM
+; 3.00       Add CLS Command
 
 nums_1          = Itempl        ; number to bin/hex string convert MSB
 nums_2          = Itemph        ; number to bin/hex string convert
@@ -149,6 +150,7 @@ Sendh           = Aspth         ; BASIC pointer temp low byte
     token_CONT
     token_LIST
     token_CLEAR
+    token_CLS
     token_NEW
     token_WIDTH
     token_GET
@@ -1100,6 +1102,11 @@ LAB_CLEAR:
     beq   LAB_147A          ; if no following token go do "CLEAR"
                               ; else there was a following token (go do syntax error)
     rts
+
+LAB_CLS:
+    lda   #<LAB_CLS_STRING  ; point to memory size message (low addr)
+    ldy   #>LAB_CLS_STRING  ; point to memory size message (high addr)
+    jmp   LAB_18C3          ; print null terminated string from memory
 
 ; perform LIST [n][-m]
 ; bigger, faster version (a _lot_ faster)
@@ -7834,6 +7841,7 @@ LAB_CTBL:
     .word LAB_CONT-1        ; CONT
     .word LAB_LIST-1        ; LIST
     .word LAB_CLEAR-1       ; CLEAR
+    .word LAB_CLS-1         ; CLS             new command
     .word LAB_NEW-1         ; NEW
     .word LAB_WDTH-1        ; WIDTH           new command
     .word LAB_GET-1         ; GET             new command
@@ -8075,6 +8083,8 @@ LBB_CHRS:
       .byte "HR$(",token_CHRS    ; CHR$(
 LBB_CLEAR:
       .byte "LEAR",token_CLEAR   ; CLEAR
+LBB_CLS:
+      .byte "LS",token_CLS       ; CLS
 LBB_CONT:
       .byte "ONT",token_CONT     ; CONT
 LBB_COS:
@@ -8357,6 +8367,8 @@ LAB_KEYT:
       .word LBB_LIST          ; LIST
       .byte 5,'C'
       .word LBB_CLEAR         ; CLEAR
+      .byte 3,'C'
+      .word LBB_CLS           ; CLS
       .byte 3,'N'
       .word LBB_NEW           ; NEW
       .byte 5,'W'
@@ -8658,3 +8670,5 @@ END_CODE:
 LAB_mess:
     .byte $0D,$0A,"6502 EhBASIC ver 2.22p5.9j [C]old/[W]arm ?",$00
                               ; sign on string
+LAB_CLS_STRING:
+    .byte $1b,"[2J",$00
