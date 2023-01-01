@@ -7,10 +7,10 @@
 ; VIA           AY-3-8910
 ; ----------- | ---------
 ; PORTA A0-A7 | D0-D7
-; PORTB B0    | BC1
+; PORTB B5    | BC1
 ;             | BC2 5V
-; PORTB B1    | BDIR
-; PORTB B2    | /RESET
+; PORTB B6    | BDIR
+; PORTB B7    | /RESET
 ;             | A8 5V
 ;             | /A9 GND
 
@@ -35,10 +35,10 @@ VIA_PORTA = __VIA_START__ + VIA_REGISTER_PORTA
 VIA_DDRB  = __VIA_START__ + VIA_REGISTER_DDRB
 VIA_DDRA  = __VIA_START__ + VIA_REGISTER_DDRA
 
-RESET = %00000100
-LATCH = %00000111
-WRITE = %00000110
-READ  = %00000101
+RESET = %10000000
+LATCH = %11100000
+WRITE = %11000000
+READ  = %10100000
 
 
         .code
@@ -262,7 +262,7 @@ exit:
 
 
 vgm_file:
-        .incbin "../audio/01_moonpatrol"
+        ; .incbin "../audio/01_moonpatrol"
         ; .incbin "../audio/01_bombjack_trimmed"
         ; .incbin "../audio/01_bubble"
-        ; .incbin "../audio/02_bubble_main"
+        .incbin "../audio/02_bubble_main"

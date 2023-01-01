@@ -1,4 +1,4 @@
-    .include "lcd.inc"
+    ; .include "lcd.inc"
     .include "acia.inc"
     .include "io.inc"
     .include "via_const.inc"
@@ -19,14 +19,14 @@ main:
     ldx #$ff
     txs
 
-    jsr _lcd_init
+    ; jsr _lcd_init
     jsr _acia_init
 
-    lda #<lcd_message
-    sta str_ptr
-    lda #>lcd_message
-    sta str_ptr + 1
-    jsr _lcd_print
+    ; lda #<lcd_message
+    ; sta str_ptr
+    ; lda #>lcd_message
+    ; sta str_ptr + 1
+    ; jsr _lcd_print
 
     cli
     jsr go_help
@@ -76,7 +76,7 @@ go_basic:
     jmp loop
 
 
-lcd_message:  .asciiz "Connect to tty                          On 8N1 19200"
+; lcd_message:  .asciiz "Connect to tty                          On 8N1 19200"
 load_message: .byte "Press 'x' to start xmodem receive ...", $0a, $0d
               .byte "Press 'r' to run your program ...", $0a, $0d
               .byte "Press 'b' to run basic ...", $0a, $0d

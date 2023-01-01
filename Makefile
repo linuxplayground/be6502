@@ -114,4 +114,4 @@ $(LOAD_BUILD)/%.raw: $(SYSTEM_MEMORY_MAP_OBJECT) $(LOAD_OBJECTS) $(LOAD_COMMON_L
 
 # prune the loadables
 $(LOAD_BUILD)/%.bin: $(LOAD_BUILD)/%.raw
-	python loadtrim.py $^ $@
+	python3 loadtrim.py $^ $@
