@@ -1,5 +1,6 @@
         .include "utils.inc"
         .include "via_const.inc"
+        .include "acia.inc"
 
         .import __VIA_START__
 VIA_PORTB = __VIA_START__ + VIA_REGISTER_PORTB
@@ -20,6 +21,8 @@ WRITE = %00000110
         sta VIA_DDRB
 
 init:
+        lda #'s'
+        jsr _acia_write_byte
         jsr reset
 
         ; set up channel A at full volume
@@ -29,6 +32,9 @@ init:
         lda #$0f
         ldx #$08
         jsr write_register
+
+        lda #'i'
+        jsr _acia_write_byte
 
         ; do descending notes
         ldy #$00
@@ -45,6 +51,8 @@ descending:
         bne descending
 exit:
         jsr reset
+        lda #'e'
+        jsr _acia_write_byte
         rts
 
 reset:
@@ -54,6 +62,8 @@ reset:
         jsr _delay_ms
         lda #RESET
         sta VIA_PORTB
+        rts
+
 ; a contains value to send
 ; x contains register to send to.
 write_register:
