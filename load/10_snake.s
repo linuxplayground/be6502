@@ -339,6 +339,7 @@ update_snake:
         jmp @return
 @move_left:
         lda snake_x
+        dec                     ; decrement X
         bmi @collide            ; if we have gone into negatives, we are off the left of screen
         sta snake_x             ; save X
         jmp @return

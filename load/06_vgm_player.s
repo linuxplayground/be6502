@@ -263,6 +263,6 @@ exit:
 
 vgm_file:
         ; .incbin "../audio/01_moonpatrol"
-        .incbin "../audio/01_bombjack_trimmed"
+        ; .incbin "../audio/01_bombjack_trimmed"
         ; .incbin "../audio/01_bubble"
-        ; .incbin "../audio/02_bubble_main"
+        .incbin "../audio/02_bubble_main"
