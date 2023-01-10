@@ -62,7 +62,6 @@ LOAD_SOURCE_FILES=01_first_loadable.s \
 			06_vgm_player.s \
 			07_ay_kbd.s \
 			08_vdp.s \
-			09_vdp_g1.s \
 			10_snake.s
 LOAD_OBJECTS=$(LOAD_SOURCE_FILES:%.s=$(LOAD_BUILD)/%.o)
 LOAD_RAW=$(LOAD_SOURCE_FILES:%.s=$(LOAD_BUILD)/%.raw)
