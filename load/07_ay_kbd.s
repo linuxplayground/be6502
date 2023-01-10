@@ -28,7 +28,7 @@ init:
         lda #$3e
         ldx #$07
         jsr write_register
-        lda #$0f
+        lda #$1f
         ldx #$08                ; tone is full volume
         jsr write_register
 
@@ -70,7 +70,8 @@ get_key:
         jmp exit
 
 play:
-        ; jsr attack
+
+        jsr decay
 
         lda no6ct,y
         ldx #$01                ; course tune = reg 1
@@ -80,7 +81,6 @@ play:
         ldx #$00
         jsr write_register      ; fine tune = reg 0
 
-        jsr decay
         jsr print_note
 
         jmp get_key
@@ -108,7 +108,7 @@ play_happy:
         jsr decay
         jsr print_note
 
-        lda #100
+        lda #$ff
         jsr _delay_ms
 
         plx
@@ -161,21 +161,15 @@ write_register:
 decay:
         phx
         pha
-        ldx #8
-        lda #16
-        jsr write_register
-        ldx #9
-        lda #15
-        jsr write_register
-        ldx #10
-        lda #15
-        jsr write_register
-        ldx #12
-        lda #30
-        jsr write_register
-        ldx #13
-        lda #0
-        jsr write_register
+        lda #$ff
+        ldx #$0B
+        jsr write_register        ; audio register oct13 - Envelop duration fine
+        lda #$20
+        ldx #$0C
+        jsr write_register        ; audio register oct14 - Envelope duration course
+        lda #$00
+        ldx #$0D
+        jsr write_register        ; adio register oct15 - Envelop shape (fade out)
         pla
         plx
         rts
