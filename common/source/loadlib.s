@@ -18,6 +18,13 @@
         .export _delay_sec
         ; wozmon
         .export _prbyte
+        ; vdp
+        .export _vdp_reset
+        .export _vdp_clear_screen
+        .export _vdp_print
+        .export _vdp_set_ram_address
+        .export _vdp_cout
+        .export _vdp_set_register
 
         .code
 
@@ -39,3 +46,10 @@ _delay_ms:                      jmp (_syscall__delay_ms)
 _delay_sec:                     jmp (_syscall__delay_sec)
 ;wozmon
 _prbyte:                        jmp (_syscall__prbyte)
+;vdp
+_vdp_reset:                     jmp (_syscall__vdp_reset)
+_vdp_clear_screen:              jmp (_syscall__vdp_clear_screen)
+_vdp_print:                     jmp (_syscall__vdp_print)
+_vdp_set_ram_address:           jmp (_syscall__vdp_set_ram_address)
+_vdp_cout:                      jmp (_syscall__vdp_cout)
+_vdp_set_register:              jmp (_syscall__vdp_set_register)

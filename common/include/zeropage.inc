@@ -139,3 +139,6 @@
         .globalzp IrqBase 
         .globalzp Decss 
         .globalzp Decssp1 
+        .globalzp VDP_PATTERN_INIT
+        .globalzp VDP_PATTERN_INIT_HI
+        .globalzp VDP_TMP_VRAM

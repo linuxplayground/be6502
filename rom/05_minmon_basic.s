@@ -8,6 +8,7 @@
     .include "syscalls.inc"
     .include "ehbasic.inc"
     .include "tty.inc"
+    .include "vdp.inc"
 
     .export _monmain
     .export _monloop
@@ -28,6 +29,7 @@ main:
     sta str_ptr + 1
     jsr _lcd_print
 
+    jsr _vdp_reset
     cli
     jsr go_help
 

@@ -141,6 +141,9 @@
         .exportzp IrqBase 
         .exportzp Decss 
         .exportzp Decssp1 
+        .exportzp VDP_PATTERN_INIT
+        .exportzp VDP_PATTERN_INIT_HI
+        .exportzp VDP_TMP_VRAM
        
 usr_irq:                .res 2, 0  ; the jump vector for user IRQ routines
 
@@ -305,3 +308,9 @@ NmiBase:                .res 3         ; NMI handler enabled/setup/triggered fla
 IrqBase:                .res 3         ; IRQ handler enabled/setup/triggered flags
 Decss:                  .res 1         ; number to decimal string start
 Decssp1:                .res 16        ; number to decimal string start
+
+; TMS Stuff
+
+VDP_PATTERN_INIT:       .res 1
+VDP_PATTERN_INIT_HI:    .res 1
+VDP_TMP_VRAM:           .res 2

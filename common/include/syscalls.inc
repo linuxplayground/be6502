@@ -16,3 +16,10 @@
         .forceimport _syscall__delay_sec
         ; wozmon
         .forceimport _syscall__prbyte
+        ; tms vdp
+        .forceimport _syscall__vdp_reset
+        .forceimport _syscall__vdp_clear_screen
+        .forceimport _syscall__vdp_print
+        .forceimport _syscall__vdp_set_ram_address
+        .forceimport _syscall__vdp_cout
+        .forceimport _syscall__vdp_set_register
